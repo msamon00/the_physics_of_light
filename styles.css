@@ -1,0 +1,197 @@
+/* --------------------------
+   Color palette
+   -------------------------- */
+:root {
+  --bg-deep: #0B0E16;
+  --bg-surface: #111827;
+
+  --text-main: #F1F5F9;
+  --text-muted: #CBD5E1;
+
+  --accent-red:    #FF4F59;
+  --accent-orange: #F97316;
+  --accent-yellow: #EAB308;
+  --accent-green:  #22C55E;
+  --accent-blue:   #3B82F6;
+  --accent-violet: #A855F7;
+
+  --sidebar-width: 260px;
+  --card-radius: 14px;
+}
+
+/* --------------------------
+   Global
+   -------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text-main);
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* --------------------------
+   Layout - textbook flow
+   -------------------------- */
+
+/* Sidebar fixed to the left */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  padding: 24px;
+  background: #0E1321;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  overflow-y: auto;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.4);
+}
+
+/* Rainbow Logo Block */
+#nav-logo {
+  width: 80%;
+  height: 55px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  background: linear-gradient(
+    90deg,
+    magenta,
+    violet,
+    blue,
+    cyan,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+
+/* Navigation list styling */
+#navbar ul {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Navigation links */
+#navbar a {
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: block;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#navbar a:hover {
+  background: rgba(59,130,246,0.15);
+  transform: translateX(6px);
+}
+
+/* Apply slight spectral dot colors */
+#navbar ul li:nth-child(1) a::before { background: red; }
+#navbar ul li:nth-child(2) a::before { background: orange; }
+#navbar ul li:nth-child(3) a::before { background: yellow; }
+#navbar ul li:nth-child(4) a::before { background: green; }
+#navbar ul li:nth-child(5) a::before { background: cyan; }
+#navbar ul li:nth-child(6) a::before { background: blue; }
+#navbar ul li:nth-child(7) a::before { background: violet; }
+#navbar ul li:nth-child(8) a::before { background: magenta; }
+
+/* Dot inside each nav link */
+#navbar a::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* --------------------------
+   Main content column
+   -------------------------- */
+
+#main-doc {
+  margin-left: calc(var(--sidebar-width) + 32px);
+  padding: 40px 20px;
+  max-width: 900px;   /* good reading width */
+}
+
+/* Section “cards” */
+.main-section {
+  background: var(--bg-surface);
+  padding: 24px;
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+  margin-bottom: 32px;
+}
+
+/* Section headers */
+.main-section h1 {
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+  font-size: 1.7rem;
+}
+
+/* Text paragraphs (your D#.1 placeholders) */
+.discussion p {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* Clicking navbar links ensures section headers are visible below the fixed sidebar */
+.main-section {
+  scroll-margin-top: 40px;
+}
+
+/* --------------------------
+   Mobile responsive
+   -------------------------- */
+@media (max-width: 850px) {
+
+  /* Sidebar becomes a top bar */
+  #navbar {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    padding: 14px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: center;
+  }
+
+  #navbar ul {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  #main-doc {
+    margin-left: 0;
+    margin-top: 90px;
+  }
+
+  .main-section {
+    padding: 18px;
+  }
+
+  .main-section h1 {
+    font-size: 1.4rem;
+  }
+}
